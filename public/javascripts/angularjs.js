@@ -39,7 +39,7 @@
                 {
                     field: 'desigination',
                     displayName: 'Designation',
-                    width: "20%"
+                    width: "30%"
                 },
                 {
                     field: 'project',
@@ -51,10 +51,10 @@
                     displayName: 'Salary',
                     cellClass: 'ageCell',
                     headerCellClass: 'ageHeader',
-                    width: "**"
+                    width: "10%"
                 }
             ],
-        }
+        };
 
 
 
@@ -73,6 +73,7 @@
         }
 
         $scope.getEmpDetails = function() {
+            
             $http.get('/getempdata').then(function(response) {
                 $scope.IsLogin = false;
                 console.log(response);
@@ -80,24 +81,35 @@
                 $scope.gridOptions.data = response.data;
 
             });
-        }
+        };
 
         $scope.newEmployee = {};
 
         $scope.addEmployee = function() {
-            $http.get('/addempdata').then(function(response) {
-                if(response.data === "success"){
-                    $scope.gridOptions.data.push($scope.newEmployee);
-                    $scope.successful = true;
-                    $scope.successMsg = "Employee" + " " + $scope.newEmployee.name + " " + "succefully added."
-                }
-            },function(response){
-                
-                 $scope.error = true;
-                 $scope.errorMsg = response.data.error.errmsg;
-            });
            
-        }
+            $http({
+                    url: 'addempdata',
+                    method: "POST",
+                    headers: {'Content-Type': 'application/json '},
+                    data: $scope.newEmployee
+                })
+                .then(function(response) {
+                   if(response.data === "success"){
+                        
+                        $scope.getEmpDetails();
+                        $scope.successful = true;
+                        var user = $scope.newEmployee.name;
+                        $scope.successMsg = "Employee" + " " + user + " " + "succefully added.";
+                        $scope.newEmployee = {};
+                        $('#addEmp').modal('hide');
+                    }
+                }, 
+                function(response) { // optional
+                    $scope.error = true;
+                    $scope.errorMsg = response.data.error.errmsg;
+                    $('#addEmp').modal('hide');
+                });        
+        };
 
         $scope.IsLogin = true;
     }); //END of controller

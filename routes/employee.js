@@ -13,12 +13,12 @@ exports.getEmpList = function (req,res){
 
 exports.addEmp = function (req,res){
     var data = {};
-    
+    console.log(req.body);
     var tempEmp = new EMP();
-    tempEmp.name = "meri x jaan";
-    tempEmp.salary = 20012;
-    tempEmp.project ="Digital";
-    tempEmp.desigination = "Test engineer";
+    tempEmp.name = req.body.name;
+    tempEmp.salary = parseInt(req.body.salary);
+    tempEmp.project =req.body.project;
+    tempEmp.desigination = req.body.designation;
 
     tempEmp.save(function(err,savedUser){
        if(err){

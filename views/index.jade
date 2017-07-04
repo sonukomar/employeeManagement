@@ -28,11 +28,14 @@ block content
        div.col-md-12(ng-if="!IsLogin")
         div(class="btn btn-default" ng-click='getEmpDetails()')
           i(class="fa fa-list" aria-hidden="true") &nbsp;List All Employees
-        div(class="btn btn-default" data-toggle="modal" data-target="#addEmp")
+        div(class="btn btn-default actionBtn" data-toggle="modal" data-target="#addEmp")
           i(class="fa fa-plus-square-o" aria-hidden="true") &nbsp;Add an Employee
-        button(class="btn btn-default") Clear Result
+
+        div(class="btn btn-default actionBtn")
+          i(class="fa fa-plus-square-o" aria-hidden="true") &nbsp;Clear Result  
+       
         div.clearfix
-        div(style="position:relative" ng-if="gridOptions.data.length" class="col-md-10")
+        div(style="position:relative;margin-top:10px;" ng-if="gridOptions.data.length")
           div(ui-grid="gridOptions")
 
        div.col-md-12

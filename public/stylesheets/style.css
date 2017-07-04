@@ -11,6 +11,13 @@ p {
     color: #b87e2a !important;
 }
 
+i.ui-grid-icon-angle-down {
+    display: none;
+}
+
+.actionBtn{
+    margin-left: 10px;
+}
 .color_page {
     color: #b87e2a !important;
 }
