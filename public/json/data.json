@@ -1,0 +1,20 @@
+{
+"employee" : [
+  {"name": "ABC","salary": "1000",   "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "DEF","salary": "2000",   "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "GHI","salary": "3000",   "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "UJK","salary": "4000",   "designation":   "Senior Delveloper","project": "1. 24H"},
+  {"name": "WEQW","salary": "5000",  "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "SDSD","salary": "6000",  "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "CXZC","salary": "7000",  "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "CXCD","salary": "8000",  "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "VFVF","salary": "9000",  "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "GHT","salary": "10000",  "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "JJU","salary": "11000",  "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "GBFG","salary": "12000", "designation":   "Tester",     "project": "1. 24H"},
+  {"name": "BFBF","salary": "13000", "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "JJ","salary": "14000",   "designation":   "Delveloper", "project": "1. 24H"},
+  {"name": "YY","salary": "15000",   "designation":   "Delveloper", "project": "1. 24H"}
+
+  ]
+}
