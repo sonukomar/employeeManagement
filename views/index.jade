@@ -23,6 +23,7 @@ block content
           div.form-group
             label('for=exampleInputPassword1') Password
             input(type='password' class='form-control' ng-model='password' id='exampleInputPassword1' placeholder='Password')
+          P(class="pull-right") ** Enter anything to login :-)  
           button(class="btn btn-default" ng-click="login();") Login
 
        div.col-md-12(ng-if="!IsLogin")
@@ -66,7 +67,9 @@ block content
                     input(type='text' class='form-control' ng-model='newEmployee.project' id='project' placeholder='project')
 
               div(class="modal-footer")
+               
                 button(type="button" class="btn btn-default" data-dismiss="modal") Close
-                button(type="button" ng-click='addEmployee()' class="btn btn-primary") Add
+                button(type="button" ng-if="!update" ng-click='addEmployee()' class="btn btn-primary") Add
+                button(type="button" ng-if="update" ng-click='updateEmployee()' class="btn btn-primary") Update
               
             

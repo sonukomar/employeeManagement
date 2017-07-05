@@ -19,8 +19,11 @@
         </div>
         <ol class="dropdown-menu" style="padding-left:5px" role="menu" aria-labelledby="single-button"">
 
-            <li role="menuitem" class="listyleAction" data-toggle="modal" data-target="#foundDeletePopup" ng-click="grid.appScope.foundDelete(row,$index,'sideBarDelete');multiDelete=false;">
+            <li role="menuitem" class="listyleAction" ng-click="grid.appScope.removeEmployee(row);">
                 <a href="" localize>Delete <i class="fa fa-times" aria-hidden="true"></i></a>
+            </li>
+            <li role="menuitem" class="listyleAction" data-toggle="modal" data-target="#addEmp" ng-click="grid.appScope.updateEmployeeForm(row);">
+                <a href="" localize>Update <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
             </li>
 
 

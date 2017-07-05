@@ -72,9 +72,17 @@
             $scope.getEmpDetails();
         }
 
+        $scope.updateEmployeeForm = function(row){
+             $scope.newEmployee.name         = row.entity.name;
+             $scope.newEmployee.salary       = row.entity.salary;
+             $scope.newEmployee.project       = row.entity.project;
+             $scope.newEmployee.designation  = row.entity.desigination;
+             $scope.update = true;
+
+        }        
         $scope.getEmpDetails = function() {
-            
-            $http.get('/getempdata').then(function(response) {
+
+            $http.get('getempdata').then(function(response) {
                 $scope.IsLogin = false;
                 console.log(response);
                 $scope.gridOptions.data = [];
@@ -86,32 +94,95 @@
         $scope.newEmployee = {};
 
         $scope.addEmployee = function() {
-           
+
             $http({
                     url: 'addempdata',
                     method: "POST",
-                    headers: {'Content-Type': 'application/json '},
+                    headers: {
+                        'Content-Type': 'application/json '
+                    },
                     data: $scope.newEmployee
                 })
                 .then(function(response) {
-                   if(response.data === "success"){
-                        
-                        $scope.getEmpDetails();
-                        $scope.successful = true;
-                        var user = $scope.newEmployee.name;
-                        $scope.successMsg = "Employee" + " " + user + " " + "succefully added.";
-                        $scope.newEmployee = {};
+                        if (response.data === "success") {
+
+                            $scope.getEmpDetails();
+                            $scope.successful = true;
+                            var user = $scope.newEmployee.name;
+                            $scope.successMsg = "Employee" + " " + user + " " + "successfully added.";
+                            $scope.newEmployee = {};
+                            $('#addEmp').modal('hide');
+                        }
+                    },
+                    function(response) { // optional
+                        $scope.error = true;
+                        $scope.errorMsg = response.data.error.errmsg;
                         $('#addEmp').modal('hide');
-                    }
-                }, 
-                function(response) { // optional
-                    $scope.error = true;
-                    $scope.errorMsg = response.data.error.errmsg;
-                    $('#addEmp').modal('hide');
-                });        
+                    });
         };
 
+        $scope.removeEmployee = function(row) {
+            var rowInfos = row.entity.name;
+            var payLoad = {
+                url: 'removeempdata',
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json '
+                },
+                data: {
+                    'name': rowInfos
+                }
+            };
+            $http(payLoad)
+                .then(function(response) {
+                        if (response.data.status === "success") {
+                            $scope.successful = true;
+                            $scope.successMsg = "Employee" + " " + rowInfos + " " + "succefully deleted.";
+                            $scope.getEmpDetails();
+
+                        }
+                    },
+                    function(response) { // optional
+                        $scope.error = true;
+                        $scope.errMsg = "Employee" + " " + rowInfos + " " + "succefully deleted.";
+                    });
+
+        };
+
+        $scope.updateEmployee = function() {
+                    var rowInfos = $scope.newEmployee.name;
+                    var payLoad = {
+                        url: 'updateempdata',
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json '
+                        },
+                        data: $scope.newEmployee
+                    };
+                    $http(payLoad)
+                        .then(function(response) {
+                                if (response.data.status === "success") {
+                                    $scope.successful = true;
+                                    $scope.successMsg = "Employee" + " " + rowInfos + " " + "successfully update.";
+                                    $scope.newEmployee = {};
+                                    $('#addEmp').modal('hide');
+                                    $scope.getEmpDetails();
+
+                                }
+                            },
+                            function(response) { // optional
+                                $scope.error = true;
+                                $scope.errMsg = "Something went wrong!!";
+                                $scope.newEmployee = {};
+                                $('#addEmp').modal('hide');
+                            });
+
+        };        
+
+        $scope.error = false;
+        $scope.errMsg = "";
         $scope.IsLogin = true;
+         $scope.update = false;
     }); //END of controller
 
 })(); //end of module
